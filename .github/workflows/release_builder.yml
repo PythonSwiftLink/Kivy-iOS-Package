@@ -60,6 +60,7 @@ jobs:
         run: |
             cd ..
             ./restructure.sh
+      
       - uses: actions/upload-artifact@v2
         with:
           name: kivy-output
@@ -85,6 +86,7 @@ jobs:
       
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "package.zip, python_lib.zip"
+          artifacts: "Kivy-iOS-Package/"
+          tag: "0.0"
           token: ${{ secrets.Homebrew }}
-          allowUpdates: true
+          #allowUpdates: true

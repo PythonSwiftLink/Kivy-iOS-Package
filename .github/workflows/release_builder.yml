@@ -47,15 +47,20 @@ jobs:
           
           chmod 755 build.sh
           chmod 755 restructure.sh
-    #   - name: generate cookie
-    #     run: python3.10 generate_formula.py ${{ needs.mainjob1.outputs.version }} ${{ needs.mainjob1.outputs.sha }}
+          cd release
 
-
-      - name: toolchain build kivy pillow
-        run: |
-            ./build.sh
+      - name: toolchain build python3
+        run: toolchain build python3
+      
+      - name: toolchain build kivy
+        run: toolchain build kivy
+      
+      - name: toolchain build pillow
+        run: toolchain build pillow
+      
       - name: repack build environment
         run: |
+            cd ..
             ./restructure.sh
       - uses: actions/upload-artifact@v2
         with:

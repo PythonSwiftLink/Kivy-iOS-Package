@@ -6,6 +6,10 @@ name: release builder
 
 
 on:
+
+  push:
+    tags: '*'
+  
   workflow_dispatch:
 
 

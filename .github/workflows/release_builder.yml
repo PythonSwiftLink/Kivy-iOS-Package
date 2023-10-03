@@ -64,7 +64,7 @@ jobs:
     needs: [toolchainBuild]
 
     steps:
-      #- uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v2
         with:
           name: kivy-output

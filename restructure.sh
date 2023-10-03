@@ -10,6 +10,8 @@ cp -rf kivy_build/dist/root/python3/lib/* output/python_lib
 cp -rf kivy_build/dist/root/python3/include/python3.10 output/xcframework/libpython3.10.xcframework/ios-arm64/
 cp -rf kivy_build/dist/root/python3/include/python3.10 output/xcframework/libpython3.10.xcframework/ios-x86_64-simulator/
 cp -f PythonXc_Info.plist output/xcframework/libpython3.10.xcframework/Info.plist
+cp -f create_package.sh output/
+
 
 cd output/xcframework
 

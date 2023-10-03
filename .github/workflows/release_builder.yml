@@ -73,15 +73,6 @@ jobs:
             ./create_package.sh
             
             zip -r package.zip release/*
-      - name: Set SHA256
-        id: shasum
-        run: |
-          echo "var=$(shasum -a 256 ./package.zip | awk '{printf $1}')" >> $GITHUB_OUTPUT
-
-      - name: Set Version
-        id: version
-        run: |
-            echo "var=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
       
       - uses: ncipollo/release-action@v1
         with:

@@ -81,10 +81,12 @@ jobs:
             chmod 755 create_package.sh
             ./create_package.sh
             
-            zip -r package.zip release/*
+
+            zip -r package.zip Kivy-iOS-Package/*
+            zip -r python_lib.zip python_lib/*
       
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "package.zip"
+          artifacts: "package.zip, python_lib.zip"
           token: ${{ secrets.Homebrew }}
           allowUpdates: true

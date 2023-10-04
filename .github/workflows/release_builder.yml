@@ -35,10 +35,10 @@ jobs:
     #       echo "${{ needs.mainjob1.outputs.sha }}"
 
       
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10' # install the python version needed
+      # - name: setup python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.10' # install the python version needed
 
       - name: install kivy-ios
         run: |

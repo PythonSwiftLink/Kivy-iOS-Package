@@ -25,7 +25,9 @@ jobs:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: '15.0'
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          ref: generate
   
     #   - name: retrieve output
     #     run: |
@@ -69,21 +71,30 @@ jobs:
     needs: [toolchainBuild]
 
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v2
         with:
           name: kivy-output
       - run: |
             chmod 755 create_package.sh
             ./create_package.sh
-            
-
-            zip -r package.zip Kivy-iOS-Package/*
+            #zip -r package.zip Kivy-iOS-Package/*
             zip -r python_lib.zip python_lib/*
       
+      - name: Push to master
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.Homebrew }}
+        with:
+          source-directory: 'Kivy-iOS-Package'
+          destination-github-username: 'pythonswiftlink'
+          destination-repository-name: 'Kivy-iOS-Package'
+          user-email: pythonswiftlink@gmail.com
+          target-branch: master
+
+      - uses: actions/checkout@v4
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "Kivy-iOS-Package/"
+          artifacts: "python_lib.zip"
           tag: "0.0"
           token: ${{ secrets.Homebrew }}
           #allowUpdates: true
